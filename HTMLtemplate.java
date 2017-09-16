@@ -206,7 +206,7 @@ public class HTMLTemplate {
 		for(String str:tagClassList){
 			tagClass.append(" "+str+" ");
 		}
-		tagClass.append("  '");
+		tagClass.append(tagClass.length()>5?"  '":"");
 		
 		
 		Map<String,String>  tagEventMap = bean.getTagEvent();
