@@ -110,7 +110,7 @@ public class HTMLTemplate {
 	}
 
 	public HTMLTemplate addTagContext(String tagContext) {
-		this.tagContext = tagContext;
+		this.tagContext = tagContext+"\n";
 		return HTMLTemplate.this;
 	}
 
@@ -244,13 +244,13 @@ public class HTMLTemplate {
 		startTag.append("<"+tag).append(tagId)
 		.append(tagName).append(tagEvent).append(tagClass).append(tagAttr);
 		if(!isEmptyTag(tag)){
-			startTag.append(">").append("\n");
+			startTag.append(">").append("\n").append(tagContext);
 			startTag.append(innerTags);
 			endTag.append("</"+tag+">");
-			HTMLTemplate.append(startTag).append(tagContext).append(endTag).append("\n");
+			HTMLTemplate.append(startTag).append(endTag).append("\n");
 		}else{
 			startTag.append("/>");
-			HTMLTemplate.append(startTag).append("/n");
+			HTMLTemplate.append(startTag).append("\n");
 		}
 		return HTMLTemplate.toString();
 	}
