@@ -218,27 +218,27 @@ public class HTMLTemplate {
 		}
 		
 		
-		Map<String,String>  tagAttrMap = bean.getTagAttr();
-		//获取其他标签属性如果有 id 和name ,class看外部是否有属性
+		Map<String, String> tagAttrMap = bean.getTagAttr();
+		// 获取其他标签属性如果有 id 和name ,class看外部是否有属性
 		StringBuffer tagAttr = new StringBuffer();
 		Set<String> attrKeyset = tagAttrMap.keySet();
-		for(String key:attrKeyset){
-			if("name".equals(key)){
-				tagName="";
+		for (String key : attrKeyset) {
+			if ("name".equals(key)) {
+				tagName = "";
 			}
-			if("id".equals(key)){
-				tagId="";
+			if ("id".equals(key)) {
+				tagId = "";
 			}
-			if("class".equals(key)){
+			if ("class".equals(key)) {
 				String tagClassCopy = tagClass.toString();
-				String newTagClass =tagClassCopy.substring(0,tagClassCopy.length()-2);
-				newTagClass+=" "+tagEventMap.get(key)+"' ";
-				
-				tagClass=new StringBuffer(newTagClass);
-			}else{
-				tagEvent.append(" "+key+"=").append("'"+tagEventMap.get(key)+"' ");
+				String newTagClass = tagClassCopy.substring(0, tagClassCopy.length() - 2);
+				newTagClass += " " + tagAttrMap.get(key) + "' ";
+
+				tagClass = new StringBuffer(newTagClass);
+			} else {
+				tagEvent.append(" " + key + "=").append("'" + tagAttrMap.get(key) + "' ");
 			}
-			
+
 		}
 		//generate Htmltemplate
 		startTag.append("<"+tag).append(tagId)
